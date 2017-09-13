@@ -14,7 +14,7 @@ public class LoadFromFile  {
     static JFileChooser fc;
 
 
-    public static String getDirName(){
+    private static String getDirName(){
         fc = new JFileChooser();
         String path=null;
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -24,25 +24,15 @@ public class LoadFromFile  {
             File file = fc.getSelectedFile();
             path=file.getPath();
         } else {
-            // do nothing.
             System.exit(0);
-        }
-
-
-        if (path.length()>0) {
-            System.out.println(path);
-            System.out.println("Возвращаем путь\n\n");
-        } else
-        {
-            System.out.println("Path not found!\n");
         }
 
         return path;
     }
 
-    public static void loadFromFile(String path){
+    public static void loadFromFile(){
 
-        System.out.println(path);
+        System.out.println(getDirName());
     }
 
 
