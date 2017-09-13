@@ -4,55 +4,45 @@ import javax.swing.*;
 import java.io.File;
 
 // Класс для загрузки данных из файла
-public class LoadFromFile extends JPanel {
+public class LoadFromFile  {
     // TODO
-    // Считать название директории с отчетами (получить путь)
+    // Считать название директории с отчетами (получить путь)                                   ГОТОВО!!!
+
     // В цикле пока есть файлы считывать инофрмацию из каждого следующего файла
     // и добавлять в коллекцию
     //
-    public static String s1;
     static JFileChooser fc;
-
-   // public LoadFromFile() {
-       // fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);//do nothing
- //   }
 
 
     public static String getDirName(){
         fc = new JFileChooser();
+        String path=null;
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        s1= "Запускаем окно выбора папки\n";
         int returnVal = fc.showOpenDialog(LoadFromFile.fc);
-        System.out.println(returnVal);
 
         if (returnVal <1) {
             File file = fc.getSelectedFile();
-            System.out.println("Choosed: ");
-            System.out.println(file.getPath());
-            System.out.println("Complete!");
+            path=file.getPath();
+        } else {
+            // do nothing.
+            System.exit(0);
         }
 
-
-        String path="";
 
         if (path.length()>0) {
-
             System.out.println(path);
+            System.out.println("Возвращаем путь\n\n");
         } else
         {
-            s1+="Path not found!\n";
+            System.out.println("Path not found!\n");
         }
 
-        s1+= "Получаем путь\n\n";
-
-        return s1;
+        return path;
     }
 
     public static void loadFromFile(String path){
 
-        path="Проверяем наличие файла\n";
-        path+="Если файл есть - считываем его содержимое и добавляем в коллекцию\n";
-        System.out.println(s1+path);
+        System.out.println(path);
     }
 
 
