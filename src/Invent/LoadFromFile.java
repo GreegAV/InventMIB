@@ -7,10 +7,11 @@ public class LoadFromFile {
     // В цикле пока есть файлы считывать инофрмацию из каждого следующего файла
     // и добавлять в коллекцию
     //
+    public static String s1;
+
     public static String getDirName(){
-        String s1;
         s1= "Запускаем окно выбора папки\n";
-        s1+= "Получаем путь\n";
+        s1+= "Получаем путь\n\n";
 
         return s1;
     }
@@ -19,7 +20,7 @@ public class LoadFromFile {
 
         path="Проверяем наличие файла\n";
         path+="Если файл есть - считываем его содержимое и добавляем в коллекцию\n";
-        System.out.println(path);
+        System.out.println(s1+path);
     }
 
 
