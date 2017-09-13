@@ -13,20 +13,25 @@ public class LoadFromFile extends JPanel {
     public static String s1;
     static JFileChooser fc;
 
-    public LoadFromFile() {
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);//do nothing
-    }
+   // public LoadFromFile() {
+       // fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);//do nothing
+ //   }
 
 
     public static String getDirName(){
         fc = new JFileChooser();
-        //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int returnVal = fc.showOpenDialog(LoadFromFile.fc);
-
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-        }
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         s1= "Запускаем окно выбора папки\n";
+        int returnVal = fc.showOpenDialog(LoadFromFile.fc);
+        System.out.println(returnVal);
+
+        if (returnVal <1) {
+            File file = fc.getSelectedFile();
+            System.out.println("Choosed: ");
+            System.out.println(file.getPath());
+            System.out.println("Complete!");
+        }
+
 
         String path="";
 
