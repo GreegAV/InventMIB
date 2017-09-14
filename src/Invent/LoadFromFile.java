@@ -72,6 +72,7 @@ class LoadFromFile  {
 
 
     // TODO FUCKING FILE READING!!!!
+    // Крашится иногда :(
 
 
     static void readFromFile(String path, String fname){
