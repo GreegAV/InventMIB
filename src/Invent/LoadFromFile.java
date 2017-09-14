@@ -50,17 +50,14 @@ public class LoadFromFile  {
 
 // загружаем данные из файла
     public static void loadFromFile(){
-        System.out.println("Получаем имя папки");
+      //Получаем имя папки
 
         String path=getDirName();
 
-        System.out.println("Печатаем полученное имя папки");
-
-        System.out.println(path);
-
-        System.out.println("Получаем и печатаем список файлов");
+     //Получаем и печатаем список файлов в полученной папке
 
         getListFiles(path);
+
     }
 
 
