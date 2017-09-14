@@ -31,11 +31,11 @@ public class LoadFromFile  {
         }
         return path;
     }
-// получаем список файлов в папке
+// получаем список файлов в папке и возвращаем отсортированный список
 
     private static List getListFiles(String path){
-        List<String> listOfFiles = new ArrayList<String>();
 
+        List<String> listOfFiles = new ArrayList<String>();
         File files[] = new File(path).listFiles();
 
         for (File file: files) {
@@ -53,10 +53,17 @@ public class LoadFromFile  {
       //Получаем имя папки
 
         String path=getDirName();
+        List<String> fileList=getListFiles(path);
 
      //Получаем и печатаем список файлов в полученной папке
 
         getListFiles(path);
+
+        for (int i = 0; i <fileList.size() ; i++) {
+        String tmpFileName =fileList.get(i);
+            System.out.println(i+" "+tmpFileName);
+
+        }
 
     }
 
