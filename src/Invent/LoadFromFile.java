@@ -1,14 +1,11 @@
 package Invent;
 
 import javax.swing.*;
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 // Класс для загрузки данных из файла
 class LoadFromFile  {
@@ -53,7 +50,7 @@ class LoadFromFile  {
     }
 
 // загружаем данные из файла
-    static void loadFromFile(){
+    static void loadFromFile() throws FileNotFoundException {
       //Получаем имя папки
 
         String path=getDirName();
@@ -75,20 +72,28 @@ class LoadFromFile  {
     // Крашится иногда :(
 
 
-    static void readFromFile(String path, String fname){
+    static void readFromFile(String path, String fname) throws FileNotFoundException {
 
         int numlines=0;
-        try (BufferedReader reader = Files.newBufferedReader (
-                Paths.get( fname ), StandardCharsets.UTF_8 )) {
-            String line;
+//        try (BufferedReader reader = Files.newBufferedReader (
+//                Paths.get( fname ), StandardCharsets.UTF_8 )) {
+//            String line;
+//
+//            while (( line = reader.readLine()) != null ) {
+//                numlines++;
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        File file = new File(fname);
 
-            while (( line = reader.readLine()) != null ) {
-// process line
-                numlines++;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNextLine()) {
+            int i = sc.nextInt();
+            System.out.println(i);
         }
+        sc.close();
         System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
     }
 
