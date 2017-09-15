@@ -89,9 +89,9 @@ class LoadFromFile  {
 
         Scanner sc = new Scanner(file);
 
-        while (sc.hasNextLine()) {
-            int i = sc.nextInt();
-            System.out.println(i);
+        while ( (sc.hasNextLine() && (sc.nextLine() != null))){
+            numlines++;
+         //   System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
         }
         sc.close();
         System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
