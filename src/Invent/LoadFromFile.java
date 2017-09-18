@@ -34,7 +34,7 @@ class LoadFromFile  {
     }
 // получаем список файлов в папке и возвращаем отсортированный список
 
-     private static List<String> getListFiles(String path){
+     static List<String> getListFiles(String path){
 
         List<String> listOfFiles = new ArrayList<>();
         File files[] = new File(path).listFiles();
@@ -44,7 +44,6 @@ class LoadFromFile  {
                 listOfFiles.add(file.getAbsolutePath());
             }
         }
-        // Collections.sort(listOfFiles);
 
         return listOfFiles;
     }
@@ -61,7 +60,7 @@ class LoadFromFile  {
         getListFiles(path);
 
         for (String tmpFileName : fileList) {
-            readFromFile(path, tmpFileName);
+            readFromFile(tmpFileName);
         }
 
     }
@@ -73,7 +72,7 @@ class LoadFromFile  {
 //    читает посторочно
 //            определяет нужную строку.
 
-    private static void readFromFile(String path, String fname) throws FileNotFoundException {
+     static void readFromFile(String fname) throws FileNotFoundException {
 
         int numlines=1;
 
