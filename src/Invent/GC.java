@@ -29,27 +29,28 @@ public class GC {
         int numlines=1;
 
         File file = new File(tmpFileName);
-        String newFile = "x"+tmpFileName;
+        String newFile = tmpFileName+"x";
 
         Scanner sc = new Scanner(file);
         String curLine=sc.nextLine();
 
         PrintWriter destFile = new PrintWriter(newFile, "UTF-8");
-        destFile.close();
 
         while ( (sc.hasNextLine() && (curLine != null))){
             System.out.println(numlines+ " "+ curLine);
             if (curLine.contains("Debug - PCI")) {
                 System.out.println("Found!");
                 break;
-            } else
+            } else {
                 destFile.println(curLine);
+            }
 
             curLine=sc.nextLine();
             numlines++;
         }
 
         System.out.println(numlines+ " "+ curLine);
+        destFile.close();
         sc.close();
     }
 }
