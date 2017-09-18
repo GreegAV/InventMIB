@@ -71,10 +71,11 @@ class LoadFromFile  {
 //    открывает по очереди
 //    читает посторочно
 //            определяет нужную строку.
+    // записывает в нужное поле элемента
 
      static void readFromFile(String fname) throws FileNotFoundException {
 
-        int numlines=1;
+        int numlines=0;
 
         File file = new File(fname);
 
@@ -82,18 +83,36 @@ class LoadFromFile  {
         String curLine=sc.nextLine();
 
         while ( (sc.hasNextLine() && (curLine != null))){
-            System.out.println(numlines+ " "+ curLine);
-            if (curLine.contains("Debug - PCI")) {
+            if (curLine.contains("Комп'ютер ") || curLine.contains("Компьютер ")) {
                 System.out.println("Found!");
+                System.out.println(fname);
+                System.out.println(curLine);
+                String[] tokens = curLine.split(" ");
+                List<String > tokens2 = new ArrayList<>();
+
+                for (String t : tokens) {
+                    if (t!=" ")
+                    {
+                        tokens2.add(t);
+                    }
+                }
+                System.out.println(tokens.length);
+                System.out.println(tokens2.size());
+                for (int i = 0; i <tokens2.size() ; i++) {
+                    System.out.print(tokens2.get(i)+" ");
+                }
+                System.out.println();
+                //System.out.println(numlines++ + " "+t);
             }
 
             curLine=sc.nextLine();
             numlines++;
+
+
+
         }
 
-        System.out.println(numlines+ " "+ curLine);
         sc.close();
-        System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
     }
 
 
