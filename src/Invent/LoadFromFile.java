@@ -74,7 +74,7 @@ class LoadFromFile  {
 
     static void readFromFile(String path, String fname) throws FileNotFoundException {
 
-        int numlines=0;
+        int numlines=1;
 
         File file = new File(fname);
 
@@ -82,15 +82,16 @@ class LoadFromFile  {
         String curLine=sc.nextLine();
 
         while ( (sc.hasNextLine() && (curLine != null))){
-            if (curLine == "Debug - PCI") {
+            System.out.println(numlines+ " "+ curLine);
+            if (curLine == "Debug - PCI\r\n") {
                 System.out.println("Found!");
             }
 
             curLine=sc.nextLine();
             numlines++;
-            System.out.println(numlines+ " "+ curLine);
             //   System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
         }
+        System.out.println(numlines+ " "+ curLine);
         sc.close();
         System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
     }
