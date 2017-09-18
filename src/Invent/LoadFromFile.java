@@ -75,23 +75,21 @@ class LoadFromFile  {
     static void readFromFile(String path, String fname) throws FileNotFoundException {
 
         int numlines=0;
-//        try (BufferedReader reader = Files.newBufferedReader (
-//                Paths.get( fname ), StandardCharsets.UTF_8 )) {
-//            String line;
-//
-//            while (( line = reader.readLine()) != null ) {
-//                numlines++;
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         File file = new File(fname);
 
         Scanner sc = new Scanner(file);
+        String curLine=sc.nextLine();
 
-        while ( (sc.hasNextLine() && (sc.nextLine() != null))){
+        while ( (sc.hasNextLine() && (curLine != null))){
+            if (curLine == "Debug - PCI") {
+                System.out.println("Found!");
+            }
+
+            curLine=sc.nextLine();
             numlines++;
-         //   System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
+            System.out.println(numlines+ " "+ curLine);
+            //   System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
         }
         sc.close();
         System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
