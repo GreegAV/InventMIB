@@ -60,19 +60,20 @@ class LoadFromFile  {
 
         getListFiles(path);
 
-        for (int i = 0; i <fileList.size() ; i++) {
-        String tmpFileName =fileList.get(i);
-        readFromFile(path, tmpFileName);
+        for (String tmpFileName : fileList) {
+            readFromFile(path, tmpFileName);
         }
 
     }
 
 
     // TODO FUCKING FILE READING!!!!
-    // Крашится иногда :(
+//  получает список файлов
+//    открывает по очереди
+//    читает посторочно
+//            определяет нужную строку.
 
-
-    static void readFromFile(String path, String fname) throws FileNotFoundException {
+    private static void readFromFile(String path, String fname) throws FileNotFoundException {
 
         int numlines=1;
 
@@ -83,14 +84,14 @@ class LoadFromFile  {
 
         while ( (sc.hasNextLine() && (curLine != null))){
             System.out.println(numlines+ " "+ curLine);
-            if (curLine == "Debug - PCI\r\n") {
+            if (curLine.contains("Debug - PCI")) {
                 System.out.println("Found!");
             }
 
             curLine=sc.nextLine();
             numlines++;
-            //   System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
         }
+
         System.out.println(numlines+ " "+ curLine);
         sc.close();
         System.out.println("Файл "+fname+" содержит "+ numlines+ " строк.");
