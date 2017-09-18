@@ -81,11 +81,10 @@ class LoadFromFile  {
 
         Scanner sc = new Scanner(file);
         String curLine=sc.nextLine();
+        String pcName;
 
         while ( (sc.hasNextLine() && (curLine != null))){
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
-                System.out.println("Found!");
-                System.out.println(curLine);
                 String[] tokens = curLine.split(" ");
                 List<String > tokens2 = new ArrayList<>();
 
@@ -95,17 +94,12 @@ class LoadFromFile  {
                         tokens2.add(t);
                     }
                 }
-                for (int i = 0; i <tokens2.size() ; i++) {
-                    System.out.print(tokens2.get(i)+" ");
-                }
-                System.out.println();
-                //System.out.println(numlines++ + " "+t);
+                tokens2.add(0,tokens2.get(0).substring(2,tokens2.get(0).length()));
+                tokens2.add(1,tokens2.get(3).substring(1,tokens2.get(3).length()));
+                pcName=tokens2.get(1);                                                      //TODO записать в элемент инвентаризации
             }
 
             curLine=sc.nextLine();
-            numlines++;
-
-
 
         }
 
