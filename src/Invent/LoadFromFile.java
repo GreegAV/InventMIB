@@ -18,7 +18,7 @@ class LoadFromFile  {
     private static JFileChooser fc;
 
 // Получаем имя папки с файлами отчетов.
-    private static String getDirName(){
+     static String getDirName(){
         fc = new JFileChooser();
         String path=null;
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -34,7 +34,7 @@ class LoadFromFile  {
     }
 // получаем список файлов в папке и возвращаем отсортированный список
 
-     private static List getListFiles(String path){
+     private static List<String> getListFiles(String path){
 
         List<String> listOfFiles = new ArrayList<>();
         File files[] = new File(path).listFiles();
