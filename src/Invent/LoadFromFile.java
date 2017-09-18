@@ -83,9 +83,8 @@ class LoadFromFile  {
         String curLine=sc.nextLine();
 
         while ( (sc.hasNextLine() && (curLine != null))){
-            if (curLine.contains("Комп'ютер ") || curLine.contains("Компьютер ")) {
+            if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
                 System.out.println("Found!");
-                System.out.println(fname);
                 System.out.println(curLine);
                 String[] tokens = curLine.split(" ");
                 List<String > tokens2 = new ArrayList<>();
@@ -96,8 +95,6 @@ class LoadFromFile  {
                         tokens2.add(t);
                     }
                 }
-                System.out.println(tokens.length);
-                System.out.println(tokens2.size());
                 for (int i = 0; i <tokens2.size() ; i++) {
                     System.out.print(tokens2.get(i)+" ");
                 }
