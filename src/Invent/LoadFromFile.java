@@ -16,6 +16,7 @@ class LoadFromFile {
     // и добавлять в коллекцию
     //
     private static JFileChooser fc;
+    private static int numlines = 0;
 
     // Получаем имя папки с файлами отчетов.
     static String getDirName() {
@@ -75,13 +76,12 @@ class LoadFromFile {
 
     static void readFromFile(String fname) throws FileNotFoundException {
 
-        int numlines = 0;
 
         File file = new File(fname);
 
         Scanner sc = new Scanner(file);
         String curLine = sc.nextLine();
-        String pcName;
+        String pcName = "";
 
         while ((sc.hasNextLine() && (curLine != null))) {
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
@@ -96,13 +96,15 @@ class LoadFromFile {
                 tokens2.add(0, tokens2.get(0).substring(2, tokens2.get(0).length()));
                 tokens2.add(1, tokens2.get(3).substring(1, tokens2.get(3).length()));
                 pcName = tokens2.get(1);                                                      //TODO записать в элемент инвентаризации
+                numlines++;
             }
-
             curLine = sc.nextLine();
 
         }
 
         sc.close();
+        System.out.println(pcName);
+        System.out.println(numlines);
     }
 
 
