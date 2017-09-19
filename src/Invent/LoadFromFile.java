@@ -95,12 +95,6 @@ class LoadFromFile {
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
-//                for (String t : tokens) {
-//                    if (t != " ") {
-//                        tokens2.add(t);
-//                    }
-//                }
-
                 //TODO записать в элемент инвентаризации
                 pcName = tokens.get(2).substring(1, tokens.get(2).length());
 
@@ -109,9 +103,6 @@ class LoadFromFile {
                 if (curLine.contains("Операцiйна система") || curLine.contains("Операционная система")) {
                     tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
-//                    for (String t : tokensOS) {
-//                            tokens2OS.add(t);
-//                    }
 
                     //TODO записать в элемент инвентаризации
                     osName = tokens.get(5) + " " + tokens.get(6).substring(0, 3);
@@ -126,8 +117,7 @@ class LoadFromFile {
                             count10++;
                             break;
                     }
-                    // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
-                    System.out.println(pcName + " " + osName);
+
                 }
             }
 
@@ -135,10 +125,16 @@ class LoadFromFile {
             if (curLine.contains("Пакет обновления ОС") || curLine.contains("Пакет оновлення ОС")) {
                 System.out.println("Found !");
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+                if (tokens.size() > 5) {
+                    osSP = "SP " + tokens.get(6);
+                } else {
+                    osSP = "-";
+                }
 
-//                for (String t : tokens) {
-//                        tokens2.add(t);
-//                }
+                for (int i = 0; i < tokens.size(); i++) {
+                    System.out.println(i + "-" + tokens.get(i));
+                }
+
             }
 
 
@@ -146,6 +142,10 @@ class LoadFromFile {
             curLine = sc.nextLine();
 
         }
+
+
+        // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
+           System.out.println(pcName + " " + osName +" "+ osSP);
 
         sc.close();
 
