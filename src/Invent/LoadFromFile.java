@@ -96,8 +96,8 @@ class LoadFromFile {
                 tokens2.add(0, tokens2.get(0).substring(2, tokens2.get(0).length()));
                 tokens2.add(1, tokens2.get(3).substring(1, tokens2.get(3).length()));
                 pcName = tokens2.get(1);                                                      //TODO записать в элемент инвентаризации
-                numlines++;
             }
+
             curLine = sc.nextLine();
 
         }
