@@ -87,7 +87,7 @@ class LoadFromFile {
         String osSP = "";
         String ramSize="";
         String lanIP="";
-        List<String> printList;
+        String printName="";
         Map<String, String> licList;
 
         List<String> tokens;
@@ -160,6 +160,23 @@ class LoadFromFile {
                 lanIP=tokens.get(4).substring(tokens.get(4).indexOf("10"),tokens.get(4).length());
                 //TODO записать в элемент инвентаризации
 
+//                for (int i = 0; i < tokens.size(); i++) {
+//                    System.out.println(i + "-" + tokens.get(i));
+//                }
+
+            }
+// Printer
+            if (curLine.contains("Принтер") ) {
+                // System.out.println("Found - "+curLine);
+                tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+
+                printName=tokens.get(2).substring(tokens.get(2).indexOf("fs1")-2,tokens.get(2).length());
+                //TODO записать в элемент инвентаризации
+                System.out.println(pcName+" - "+printName);
+                while (!curLine.contains("DMI")) {
+                    curLine = sc.nextLine();
+                }
+//
 //                for (int i = 0; i < tokens.size(); i++) {
 //                    System.out.println(i + "-" + tokens.get(i));
 //                }
