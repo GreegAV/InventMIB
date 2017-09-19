@@ -11,8 +11,8 @@ import static Invent.LoadFromFile.*;
 
 public class GC {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-        String path=getDirName();
-        List<String> fileList=getListFiles(path);
+        String path = getDirName();
+        List<String> fileList = getListFiles(path);
 
         //Получаем и печатаем список файлов в полученной папке
 
@@ -26,18 +26,18 @@ public class GC {
 
     private static void clearGarbage(String tmpFileName) throws FileNotFoundException, UnsupportedEncodingException {
 
-        int numlines=1;
+        int numlines = 1;
 
         File file = new File(tmpFileName);
-        String newFile = tmpFileName+"x";
+        String newFile = tmpFileName + "x";
 
         Scanner sc = new Scanner(file);
-        String curLine=sc.nextLine();
+        String curLine = sc.nextLine();
 
         PrintWriter destFile = new PrintWriter(newFile, "UTF-8");
 
-        while ( (sc.hasNextLine() && (curLine != null))){
-            System.out.println(numlines+ " "+ curLine);
+        while ((sc.hasNextLine() && (curLine != null))) {
+            System.out.println(numlines + " " + curLine);
             if (curLine.contains("Debug - PCI")) {
                 System.out.println("Found!");
                 break;
@@ -45,11 +45,11 @@ public class GC {
                 destFile.println(curLine);
             }
 
-            curLine=sc.nextLine();
+            curLine = sc.nextLine();
             numlines++;
         }
 
-        System.out.println(numlines+ " "+ curLine);
+        System.out.println(numlines + " " + curLine);
         destFile.close();
         sc.close();
     }
