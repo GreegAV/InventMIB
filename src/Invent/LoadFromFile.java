@@ -83,6 +83,7 @@ class LoadFromFile {
         String curLine = sc.nextLine();
         String pcName = "";
         String osName = "";
+        String osSP = "";
 
         while ((sc.hasNextLine() && (curLine != null))) {
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
@@ -104,11 +105,17 @@ class LoadFromFile {
                     String[] tokensOS = curLine.split(" ");
                     List<String> tokens2OS = new ArrayList<>();
 
+                    int ii=0;
                     for (String t : tokensOS) {
                         if (t != " ") {
                             tokens2OS.add(t);
+                            // System.out.println(ii+"-"+t);
+                            // ii++;
                         }
                     }
+
+                    //TODO записать в элемент инвентаризации
+                    osName=tokens2OS.get(5)+" "+tokens2OS.get(6).substring(0, 3);
 
                 }
 
