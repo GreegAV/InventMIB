@@ -85,9 +85,9 @@ class LoadFromFile {
         String pcName = "";
         String osName = "";
         String osSP = "";
-        String ramSize="";
-        String lanIP="";
-        List<String> printList=new ArrayList<>();
+        String ramSize = "";
+        String lanIP = "";
+        List<String> printList = new ArrayList<>();
         Map<String, String> licList;
 
         List<String> tokens;
@@ -137,15 +137,15 @@ class LoadFromFile {
 // RAM size
             if (curLine.contains("Системна пам'ять") || curLine.contains("Системная память")) {
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
-                int testRAM=Integer.valueOf(tokens.get(3).substring(1, tokens.get(3).length()));
+                int testRAM = Integer.valueOf(tokens.get(3).substring(1, tokens.get(3).length()));
 
-                if (testRAM<1111) {
-                    ramSize="1Gb";
-                } else if (testRAM<2222 && testRAM>1111) {
-                    ramSize="2Gb";
-                } else if (testRAM<4444 && testRAM>2222) {
-                    ramSize="4Gb";
-                } else if (testRAM<8888 && testRAM>4444) {
+                if (testRAM < 1111) {
+                    ramSize = "1Gb";
+                } else if (testRAM < 2222 && testRAM > 1111) {
+                    ramSize = "2Gb";
+                } else if (testRAM < 4444 && testRAM > 2222) {
+                    ramSize = "4Gb";
+                } else if (testRAM < 8888 && testRAM > 4444) {
                     ramSize = "8Gb";
                 } else System.out.println(testRAM);
 
@@ -157,7 +157,7 @@ class LoadFromFile {
                 // System.out.println("Found - "+curLine);
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
-                lanIP=tokens.get(4).substring(tokens.get(4).indexOf("10"),tokens.get(4).length());
+                lanIP = tokens.get(4).substring(tokens.get(4).indexOf("10"), tokens.get(4).length());
                 //TODO записать в элемент инвентаризации
 
 //                for (int i = 0; i < tokens.size(); i++) {
@@ -174,20 +174,23 @@ class LoadFromFile {
             анализировать на наличие в строке слова принтер.
              */
 
-            if (curLine.contains("Принтер") ) {
-                if (curLine.contains("Fax")  || curLine.contains("Microsoft") || curLine.contains("USB")) {
-                    // do nothing
-                    System.out.println("!!!!"+curLine);
-                    curLine = sc.nextLine();
+            if (curLine.contains("Принтер")) {
+                if (!curLine.contains("Fax") || !curLine.contains(" Microsoft") || !curLine.contains("USB") || !curLine.contains("XPS") || !curLine.contains("PDF")) {
+//                    // do nothing
+//                  //  System.out.println("!!!!" + curLine);
+//                //    curLine = sc.nextLine();
+//                } else {
+                    printList.add(curLine.substring(13));
                 }
-                 System.out.println("Found -"+curLine);
-                tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+               // System.out.println("Found -" + curLine);
+               // tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
                 //   printList.add(tokens.get(2).substring(1,tokens.get(2).length()));
-               // printList.add(curLine.substring("Принтер".length()));
-              //  printList.add(curLine);
+                // printList.add(curLine.substring("Принтер".length()));
+                //
+
                 //TODO записать в элемент инвентаризации
-             //   System.out.println(pcName+" -"+printList.toString());
+                   System.out.println(pcName+" -"+printList.toString());
 //                while (!curLine.contains("DMI")) {
 //                    curLine = sc.nextLine();
 //                }
