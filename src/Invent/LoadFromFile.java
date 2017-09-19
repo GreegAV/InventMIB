@@ -87,7 +87,7 @@ class LoadFromFile {
         String osSP = "";
         String ramSize="";
         String lanIP="";
-        String printName="";
+        List<String> printList=new ArrayList<>();
         Map<String, String> licList;
 
         List<String> tokens;
@@ -166,16 +166,31 @@ class LoadFromFile {
 
             }
 // Printer
-            if (curLine.contains("Принтер") ) {
-                // System.out.println("Found - "+curLine);
-                tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
-                printName=tokens.get(2).substring(tokens.get(2).indexOf("fs1")-2,tokens.get(2).length());
-                //TODO записать в элемент инвентаризации
-                System.out.println(pcName+" - "+printName);
-                while (!curLine.contains("DMI")) {
+
+            /*
+            найти переферийные устройства
+            считывать строку пока не найдет DMI
+            анализировать на наличие в строке слова принтер.
+             */
+
+            if (curLine.contains("Принтер") ) {
+                if (curLine.contains("Fax")  || curLine.contains("Microsoft") || curLine.contains("USB")) {
+                    // do nothing
+                    System.out.println("!!!!"+curLine);
                     curLine = sc.nextLine();
                 }
+                 System.out.println("Found -"+curLine);
+                tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+
+                //   printList.add(tokens.get(2).substring(1,tokens.get(2).length()));
+               // printList.add(curLine.substring("Принтер".length()));
+              //  printList.add(curLine);
+                //TODO записать в элемент инвентаризации
+             //   System.out.println(pcName+" -"+printList.toString());
+//                while (!curLine.contains("DMI")) {
+//                    curLine = sc.nextLine();
+//                }
 //
 //                for (int i = 0; i < tokens.size(); i++) {
 //                    System.out.println(i + "-" + tokens.get(i));
