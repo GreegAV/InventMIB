@@ -88,13 +88,12 @@ class LoadFromFile {
         String pcName = "";
         String osName = "";
         String osSP = "";
-        List<String> tokens2;
+        List<String> tokens;
 
 
         while ((sc.hasNextLine() && (curLine != null))) {
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
-                String[] tokens = curLine.split(" ");
-                tokens2 = new ArrayList<>((Arrays.asList(tokens)));
+                tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
 //                for (String t : tokens) {
 //                    if (t != " ") {
@@ -103,20 +102,20 @@ class LoadFromFile {
 //                }
 
                 //TODO записать в элемент инвентаризации
-                pcName = tokens2.get(2).substring(1, tokens2.get(2).length());
+                pcName = tokens.get(2).substring(1, tokens.get(2).length());
 
                 curLine = sc.nextLine();
                 curLine = sc.nextLine();
                 if (curLine.contains("Операцiйна система") || curLine.contains("Операционная система")) {
-                    tokens2 = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+                    tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
 //                    for (String t : tokensOS) {
 //                            tokens2OS.add(t);
 //                    }
 
                     //TODO записать в элемент инвентаризации
-                    osName = tokens2.get(5) + " " + tokens2.get(6).substring(0, 3);
-                    switch (tokens2.get(5)) {
+                    osName = tokens.get(5) + " " + tokens.get(6).substring(0, 3);
+                    switch (tokens.get(5)) {
                         case "XP":
                             countXP++;
                             break;
@@ -135,7 +134,7 @@ class LoadFromFile {
 
             if (curLine.contains("Пакет обновления ОС") || curLine.contains("Пакет оновлення ОС")) {
                 System.out.println("Found !");
-                tokens2 = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+                tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
 //                for (String t : tokens) {
 //                        tokens2.add(t);
