@@ -136,20 +136,28 @@ class LoadFromFile {
 
 // RAM size
             if (curLine.contains("Системна пам'ять") || curLine.contains("Системная память")) {
-                // System.out.println("Found - "+curLine);
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
                 int testRAM=Integer.valueOf(tokens.get(3).substring(1, tokens.get(3).length()));
 
                 if (testRAM<1111) {
-                    ramSize="1Gb ("+testRAM+")";
+                    ramSize="1Gb";
                 } else if (testRAM<2222 && testRAM>1111) {
-                    ramSize="2Gb ("+testRAM+")";
+                    ramSize="2Gb";
                 } else if (testRAM<4444 && testRAM>2222) {
-                    ramSize="4Gb ("+testRAM+")";
+                    ramSize="4Gb";
                 } else if (testRAM<8888 && testRAM>4444) {
-                    ramSize = "8Gb ("+testRAM+")";
+                    ramSize = "8Gb";
                 } else System.out.println(testRAM);
 
+                //TODO записать в элемент инвентаризации
+            }
+
+// LAN adress
+            if (curLine.contains("Первинна адреса IP") || curLine.contains("Первичный адрес IP")) {
+                // System.out.println("Found - "+curLine);
+                tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+
+                lanIP=tokens.get(4).substring(tokens.get(4).indexOf("10"),tokens.get(4).length());
                 //TODO записать в элемент инвентаризации
 
 //                for (int i = 0; i < tokens.size(); i++) {
@@ -165,7 +173,7 @@ class LoadFromFile {
 
 
         // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
-          System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize);
+//          System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize);
 
         sc.close();
 
