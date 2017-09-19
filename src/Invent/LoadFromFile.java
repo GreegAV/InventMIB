@@ -3,10 +3,7 @@ package Invent;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 // Класс для загрузки данных из файла
 class LoadFromFile {
@@ -88,10 +85,16 @@ class LoadFromFile {
         String pcName = "";
         String osName = "";
         String osSP = "";
+        String ramSize="";
+        String lanIP="";
+        List<String> printList;
+        Map<String, String> licList;
+
         List<String> tokens;
 
 
         while ((sc.hasNextLine() && (curLine != null))) {
+// Computer Name
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
@@ -100,9 +103,9 @@ class LoadFromFile {
 
                 curLine = sc.nextLine();
                 curLine = sc.nextLine();
+// OS name
                 if (curLine.contains("Операцiйна система") || curLine.contains("Операционная система")) {
                     tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
-
 
                     //TODO записать в элемент инвентаризации
                     osName = tokens.get(5) + " " + tokens.get(6).substring(0, 3);
@@ -117,26 +120,43 @@ class LoadFromFile {
                             count10++;
                             break;
                     }
-
                 }
             }
 
-
+// Service pack
             if (curLine.contains("Пакет обновления ОС") || curLine.contains("Пакет оновлення ОС")) {
-                System.out.println("Found !");
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
                 if (tokens.size() > 5) {
                     osSP = "SP " + tokens.get(6);
                 } else {
                     osSP = "-";
                 }
-
-                for (int i = 0; i < tokens.size(); i++) {
-                    System.out.println(i + "-" + tokens.get(i));
-                }
-
+                //TODO записать в элемент инвентаризации
             }
 
+// RAM size
+            if (curLine.contains("Системна пам'ять") || curLine.contains("Системная память")) {
+                // System.out.println("Found - "+curLine);
+                tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+                int testRAM=Integer.valueOf(tokens.get(3).substring(1, tokens.get(3).length()));
+
+                if (testRAM<1111) {
+                    ramSize="1Gb ("+testRAM+")";
+                } else if (testRAM<2222 && testRAM>1111) {
+                    ramSize="2Gb ("+testRAM+")";
+                } else if (testRAM<4444 && testRAM>2222) {
+                    ramSize="4Gb ("+testRAM+")";
+                } else if (testRAM<8888 && testRAM>4444) {
+                    ramSize = "8Gb ("+testRAM+")";
+                } else System.out.println(testRAM);
+
+                //TODO записать в элемент инвентаризации
+
+//                for (int i = 0; i < tokens.size(); i++) {
+//                    System.out.println(i + "-" + tokens.get(i));
+//                }
+
+            }
 
             // Считываем следующую строку ниже по файлу
             curLine = sc.nextLine();
@@ -145,7 +165,7 @@ class LoadFromFile {
 
 
         // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
-           System.out.println(pcName + " " + osName +" "+ osSP);
+          System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize);
 
         sc.close();
 

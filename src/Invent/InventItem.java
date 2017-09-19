@@ -10,7 +10,8 @@ public class InventItem {
     private String pcName;
     private String osName;
     private String osSP;
-    private String cpuName;
+ //   private String cpuName;
+ // не придумал зачем
     private int ramSize;
     private String hddName;
     private String lanIP;
@@ -31,9 +32,9 @@ public class InventItem {
         return osSP;
     }
 
-    public String getCpuName() {
-        return cpuName;
-    }
+//    public String getCpuName() {
+//        return cpuName;
+//    }
 
     public int getRamSize() {
         return ramSize;
@@ -67,9 +68,9 @@ public class InventItem {
         this.osSP = osSP;
     }
 
-    public void setCpuName(String cpuName) {
-        this.cpuName = cpuName;
-    }
+//    public void setCpuName(String cpuName) {
+//        this.cpuName = cpuName;
+//    }
 
     public void setRamSize(int ramSize) {
         this.ramSize = ramSize;
