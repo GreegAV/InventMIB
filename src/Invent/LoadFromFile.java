@@ -94,9 +94,10 @@ class LoadFromFile {
                         tokens2.add(t);
                     }
                 }
-                tokens2.add(0, tokens2.get(0).substring(2, tokens2.get(0).length()));
-                tokens2.add(1, tokens2.get(3).substring(1, tokens2.get(3).length()));
-                pcName = tokens2.get(1);                                                      //TODO записать в элемент инвентаризации
+
+                //TODO записать в элемент инвентаризации
+                pcName = tokens2.get(2).substring(1, tokens2.get(2).length());
+
                 curLine = sc.nextLine();
                 curLine = sc.nextLine();
                 if (curLine.contains("Операцiйна система") || curLine.contains("Операционная система")) {
