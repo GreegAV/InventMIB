@@ -17,6 +17,7 @@ class LoadFromFile {
     //
     private static JFileChooser fc;
     private static int numlines = 0;
+    private static int countXP=0, count7=0, count10=0;
 
     // Получаем имя папки с файлами отчетов.
     static String getDirName() {
@@ -85,6 +86,7 @@ class LoadFromFile {
         String osName = "";
         String osSP = "";
 
+
         while ((sc.hasNextLine() && (curLine != null))) {
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
                 String[] tokensPCName = curLine.split(" ");
@@ -116,6 +118,13 @@ class LoadFromFile {
 
                     //TODO записать в элемент инвентаризации
                     osName=tokens2OS.get(5)+" "+tokens2OS.get(6).substring(0, 3);
+                    switch (tokens2OS.get(5)){
+                        case "XP":countXP++; break;
+                        case "7":count7++; break;
+                        case "10":count10++; break;
+                    }
+                    System.out.println(pcName+" "+osName);
+
 
                 }
 
@@ -127,6 +136,9 @@ class LoadFromFile {
         }
 
         sc.close();
+        System.out.println("XP - "+countXP);
+        System.out.println("7 - "+count7);
+        System.out.println("10 - "+count10);
     }
 
 
