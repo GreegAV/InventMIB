@@ -82,13 +82,14 @@ class LoadFromFile {
         Scanner sc = new Scanner(file);
         String curLine = sc.nextLine();
         String pcName = "";
+        String osName = "";
 
         while ((sc.hasNextLine() && (curLine != null))) {
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
-                String[] tokens = curLine.split(" ");
+                String[] tokensPCName = curLine.split(" ");
                 List<String> tokens2 = new ArrayList<>();
 
-                for (String t : tokens) {
+                for (String t : tokensPCName) {
                     if (t != " ") {
                         tokens2.add(t);
                     }
@@ -96,6 +97,21 @@ class LoadFromFile {
                 tokens2.add(0, tokens2.get(0).substring(2, tokens2.get(0).length()));
                 tokens2.add(1, tokens2.get(3).substring(1, tokens2.get(3).length()));
                 pcName = tokens2.get(1);                                                      //TODO записать в элемент инвентаризации
+                curLine = sc.nextLine();
+                curLine = sc.nextLine();
+                if (curLine.contains("Операцiйна система") || curLine.contains("Операционная система")) {
+                    String[] tokensOS = curLine.split(" ");
+                    List<String> tokens2OS = new ArrayList<>();
+
+                    for (String t : tokensOS) {
+                        if (t != " ") {
+                            tokens2OS.add(t);
+                        }
+                    }
+
+                }
+
+
             }
 
             curLine = sc.nextLine();
@@ -103,8 +119,6 @@ class LoadFromFile {
         }
 
         sc.close();
-        System.out.println(pcName);
-        System.out.println(numlines);
     }
 
 
