@@ -109,6 +109,7 @@ class LoadFromFile {
 
                     //TODO записать в элемент инвентаризации
                     osName = tokens.get(5) + " " + tokens.get(6).substring(0, 3);
+
                     switch (tokens.get(5)) {
                         case "XP":
                             countXP++;
@@ -196,6 +197,17 @@ class LoadFromFile {
 // LICENSES!!!
             if (curLine.contains("Ключ продукт")) {
                 System.out.println("Licenses!");
+                while (curLine.length()>0)
+                     {
+                        curLine = sc.nextLine();
+                      //  System.out.println(i+"-"+curLine);
+                        tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+
+                        for (int ii = 0; ii < tokens.size(); ii++) {
+                         //   System.out.println(ii + ":" + tokens.get(ii));
+                        }
+                    }
+
             }
 
 
