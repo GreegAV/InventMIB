@@ -89,18 +89,21 @@ class LoadFromFile {
         String lanIP = "";
         List<String> printList = new ArrayList<>();
         Map<String, String> licList = new HashMap<>();
-        boolean theEnd=false;
+        boolean theEnd = false;
 
         List<String> tokens;
 
+        InventItem anItem = new InventItem();
 
-        while ( !theEnd && (sc.hasNextLine() && (curLine != null))) {
+
+        while (!theEnd && (sc.hasNextLine() && (curLine != null))) {
 // Computer Name
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
                 //TODO записать в элемент инвентаризации
-                pcName = tokens.get(2).substring(1, tokens.get(2).length());
+                // pcName = tokens.get(2).substring(1, tokens.get(2).length());
+                anItem.setPcName(pcName);
 
                 curLine = sc.nextLine();
                 curLine = sc.nextLine();
@@ -110,6 +113,7 @@ class LoadFromFile {
 
                     //TODO записать в элемент инвентаризации
                     osName = tokens.get(5) + " " + tokens.get(6).substring(0, 3);
+                    anItem.setOsName(osName);
 
                     switch (tokens.get(5)) {
                         case "XP":
@@ -134,6 +138,7 @@ class LoadFromFile {
                     osSP = "-";
                 }
                 //TODO записать в элемент инвентаризации
+                anItem.setOsSP(osSP);
             }
 
 // RAM size
@@ -152,6 +157,8 @@ class LoadFromFile {
                 } else System.out.println(testRAM);
 
                 //TODO записать в элемент инвентаризации
+                //   System.out.println(ramSize);
+                anItem.setRamSize(ramSize);
             }
 
 // LAN adress
@@ -160,6 +167,7 @@ class LoadFromFile {
 
                 lanIP = tokens.get(4).substring(tokens.get(4).indexOf("10"), tokens.get(4).length());
                 //TODO записать в элемент инвентаризации
+                anItem.setLanIP(lanIP);
 
             }
 // Printersssss
@@ -194,6 +202,7 @@ class LoadFromFile {
 
                 //TODO записать в элемент инвентаризации
                 //    System.out.println(pcName+" -"+printList.toString());
+                anItem.setPrintList(printList);
             }
 // LICENSES!!!
             if (curLine.contains("Ключ продукт")) {
@@ -203,10 +212,10 @@ class LoadFromFile {
 
                     String softName = tokens.get(2);
                     String licNumber = tokens.get(3);
-                    licList.put(softName,licNumber);
+                    licList.put(softName, licNumber);
                     curLine = sc.nextLine();
                 }
-                theEnd=true;
+                theEnd = true;
             }
 
 
@@ -219,16 +228,18 @@ class LoadFromFile {
 
 
         // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
+        anItem.setLicList(licList);
+
         String listLicences = "";
 
-        Set<Map.Entry<String, String >> set = licList.entrySet();
-        for (Map.Entry<String, String > ll : set) {
+        Set<Map.Entry<String, String>> set = licList.entrySet();
+        for (Map.Entry<String, String> ll : set) {
             System.out.print(ll.getKey() + ": ");
             System.out.println(ll.getValue());
         }
 
+        System.out.println(pcName + " " + osName + " " + osSP + " " + ramSize + "\n " + printList.toString() + "\n " + listLicences);
         System.out.println(listLicences);
-     System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize+"\n "+printList.toString()+"\n "+listLicences);
 
         sc.close();
 

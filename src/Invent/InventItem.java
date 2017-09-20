@@ -12,7 +12,7 @@ public class InventItem {
     private String osSP;
  //   private String cpuName;
  // не придумал зачем
-    private int ramSize;
+    private String ramSize;
     private String hddName;
     private String lanIP;
     private List<String> printList;
@@ -36,7 +36,7 @@ public class InventItem {
 //        return cpuName;
 //    }
 
-    public int getRamSize() {
+    public String getRamSize() {
         return ramSize;
     }
 
@@ -72,7 +72,7 @@ public class InventItem {
 //        this.cpuName = cpuName;
 //    }
 
-    public void setRamSize(int ramSize) {
+    public void setRamSize(String ramSize) {
         this.ramSize = ramSize;
     }
 
