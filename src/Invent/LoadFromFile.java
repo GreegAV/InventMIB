@@ -89,11 +89,12 @@ class LoadFromFile {
         String lanIP = "";
         List<String> printList = new ArrayList<>();
         Map<String, String> licList;
+        boolean theEnd=false;
 
         List<String> tokens;
 
 
-        while ((sc.hasNextLine() && (curLine != null))) {
+        while ( !theEnd && (sc.hasNextLine() && (curLine != null))) {
 // Computer Name
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
@@ -196,30 +197,37 @@ class LoadFromFile {
             }
 // LICENSES!!!
             if (curLine.contains("Ключ продукт")) {
-                System.out.println("Licenses!");
-                while (curLine.length()>0)
-                     {
-                        curLine = sc.nextLine();
-                      //  System.out.println(i+"-"+curLine);
-                        tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+            //    System.out.println("Licenses!");
+                curLine = sc.nextLine();
+                while (curLine.length() > 0) {
+                    //  System.out.println(i+"-"+curLine);
+                    tokens = new ArrayList<>((Arrays.asList(curLine.split("\t"))));
 
-                        for (int ii = 0; ii < tokens.size(); ii++) {
-                         //   System.out.println(ii + ":" + tokens.get(ii));
-                        }
-                    }
+               //     for (int ii = 0; ii < tokens.size(); ii++) {
+                        //     System.out.println(ii + ":" + tokens.get(ii));
+               //     }
+                    System.out.println(pcName);
+                    String softName = tokens.get(2);
+                    System.out.println(softName);
+                    String licNumber = tokens.get(3);
+                    System.out.println(licNumber);
 
+                    curLine = sc.nextLine();
+                }
+                theEnd=true;
             }
 
 
-
-                // Считываем следующую строку ниже по файлу
-            curLine = sc.nextLine();
+            // Считываем следующую строку ниже по файлу
+            if (!theEnd) {
+                curLine = sc.nextLine();
+            }
 
         }
 
 
         // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
-//          System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize+" "+printList.toString());
+       //   System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize+" "+printList.toString());
 
         sc.close();
 
