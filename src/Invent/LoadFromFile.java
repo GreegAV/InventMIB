@@ -88,7 +88,7 @@ class LoadFromFile {
         String ramSize = "";
         String lanIP = "";
         List<String> printList = new ArrayList<>();
-        Map<String, String> licList;
+        Map<String, String> licList = new HashMap<>();
         boolean theEnd=false;
 
         List<String> tokens;
@@ -197,21 +197,13 @@ class LoadFromFile {
             }
 // LICENSES!!!
             if (curLine.contains("Ключ продукт")) {
-            //    System.out.println("Licenses!");
                 curLine = sc.nextLine();
                 while (curLine.length() > 0) {
-                    //  System.out.println(i+"-"+curLine);
                     tokens = new ArrayList<>((Arrays.asList(curLine.split("\t"))));
 
-               //     for (int ii = 0; ii < tokens.size(); ii++) {
-                        //     System.out.println(ii + ":" + tokens.get(ii));
-               //     }
-                    System.out.println(pcName);
                     String softName = tokens.get(2);
-                    System.out.println(softName);
                     String licNumber = tokens.get(3);
-                    System.out.println(licNumber);
-
+                    licList.put(softName,licNumber);
                     curLine = sc.nextLine();
                 }
                 theEnd=true;
@@ -227,7 +219,16 @@ class LoadFromFile {
 
 
         // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
-       //   System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize+" "+printList.toString());
+        String listLicences = "";
+
+        Set<Map.Entry<String, String >> set = licList.entrySet();
+        for (Map.Entry<String, String > ll : set) {
+            System.out.print(ll.getKey() + ": ");
+            System.out.println(ll.getValue());
+        }
+
+        System.out.println(listLicences);
+     //     System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize+"\n "+printList.toString()+"\n "+listLicences);
 
         sc.close();
 
