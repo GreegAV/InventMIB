@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class ReportGenerator {
-    static int col=0;
-    static int row=0;
     static boolean fileOpen=false;
     static WritableWorkbook xls;
     static WritableSheet xlsReport;
@@ -17,18 +15,16 @@ public class ReportGenerator {
     }
  //TODO подумать в каком виде оно должно быть
 
-    static void doReport(InventItem item) throws Exception {
+    static void doReport(InventItem item, int row) throws Exception {
 
+        xlsReport.addCell(new Label(0,row,item.getPcName()));
+        xlsReport.addCell(new Label(1,row,item.getOsName()));
+        xlsReport.addCell(new Label(2,row,item.getOsSP()));
+        xlsReport.addCell(new Label(3,row,item.getRamSize()));
+        xlsReport.addCell(new Label(4,row,item.getLanIP()));
 
-        xlsReport.addCell(new Label(col,row,item.getPcName()));
-        xlsReport.addCell(new Label(col++,row,item.getOsName()));
-        xlsReport.addCell(new Label(col++,row,item.getOsSP()));
-        xlsReport.addCell(new Label(col++,row,item.getRamSize()));
-        xlsReport.addCell(new Label(col++,row,item.getLanIP()));
-
-        xlsReport.addCell(new Label(col++,row,item.getPrintList().toString()));
-        xlsReport.addCell(new Label(col++,row,item.getLicList().toString()));
-
+        xlsReport.addCell(new Label(5,row,item.getPrintList().toString()));
+        xlsReport.addCell(new Label(6,row,item.getLicList().toString()));
     }
 
     static void closeReport() throws IOException, WriteException {

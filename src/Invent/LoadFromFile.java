@@ -2,7 +2,6 @@ package Invent;
 
 import javax.swing.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 import static Invent.ReportGenerator.doReport;
@@ -245,8 +244,7 @@ class LoadFromFile {
 //        System.out.println(listLicences);
 
         sc.close();
-        numItems++;
-        doReport(anItem);
+        doReport(anItem,numItems++);
 
     }
 
