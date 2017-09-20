@@ -192,17 +192,22 @@ class LoadFromFile {
 
                 //TODO записать в элемент инвентаризации
                 //    System.out.println(pcName+" -"+printList.toString());
-
+            }
+// LICENSES!!!
+            if (curLine.contains("Ключ продукт")) {
+                System.out.println("Licenses!");
             }
 
-            // Считываем следующую строку ниже по файлу
+
+
+                // Считываем следующую строку ниже по файлу
             curLine = sc.nextLine();
 
         }
 
 
         // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
-          System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize+" "+printList.toString());
+//          System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize+" "+printList.toString());
 
         sc.close();
 
