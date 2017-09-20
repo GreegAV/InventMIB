@@ -97,7 +97,6 @@ class LoadFromFile {
         InventItem anItem = new InventItem();
 
 
-
         while (!theEnd && (sc.hasNextLine() && (curLine != null))) {
 // Computer Name
             if (curLine.contains("Комп'ютер  ") || curLine.contains("Компьютер  ")) {
@@ -244,7 +243,7 @@ class LoadFromFile {
 //        System.out.println(listLicences);
 
         sc.close();
-        doReport(anItem,numItems++);
+        doReport(anItem, numItems++);
 
     }
 

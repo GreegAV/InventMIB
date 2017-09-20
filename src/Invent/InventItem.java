@@ -10,10 +10,10 @@ public class InventItem {
     private String pcName;
     private String osName;
     private String osSP;
- //   private String cpuName;
- // не придумал зачем
+    //   private String cpuName;
+    // не придумал зачем
     private String ramSize;
- //   private String hddName;
+    //   private String hddName;
     private String lanIP;
     private List<String> printList;
     private Map<String, String> licList;
