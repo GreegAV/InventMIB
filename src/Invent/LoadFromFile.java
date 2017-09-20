@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import static Invent.ReportGenerator.doReport;
+
 // Класс для загрузки данных из файла
 class LoadFromFile {
     // TODO
@@ -49,7 +51,7 @@ class LoadFromFile {
     }
 
     // загружаем данные из файла
-    static void loadFromFile() throws FileNotFoundException {
+    static void loadFromFile() throws Exception {
         //Получаем имя папки
 
         String path = getDirName();
@@ -75,7 +77,7 @@ class LoadFromFile {
 //            определяет нужную строку.
     // записывает в нужное поле элемента
 
-    static void readFromFile(String fname) throws FileNotFoundException {
+    private static void readFromFile(String fname) throws Exception {
 
 
         File file = new File(fname);
@@ -86,7 +88,7 @@ class LoadFromFile {
         String osName = "";
         String osSP = "";
         String ramSize = "";
-        String lanIP = "";
+        String lanIP;
         List<String> printList = new ArrayList<>();
         Map<String, String> licList = new HashMap<>();
         boolean theEnd = false;
@@ -102,7 +104,7 @@ class LoadFromFile {
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
                 //TODO записать в элемент инвентаризации
-                // pcName = tokens.get(2).substring(1, tokens.get(2).length());
+                pcName = tokens.get(2).substring(1, tokens.get(2).length());
                 anItem.setPcName(pcName);
 
                 curLine = sc.nextLine();
@@ -242,6 +244,7 @@ class LoadFromFile {
         System.out.println(listLicences);
 
         sc.close();
+        doReport(anItem);
 
     }
 
