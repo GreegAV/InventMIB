@@ -154,50 +154,44 @@ class LoadFromFile {
 
 // LAN adress
             if (curLine.contains("Первинна адреса IP") || curLine.contains("Первичный адрес IP")) {
-                // System.out.println("Found - "+curLine);
                 tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
 
                 lanIP = tokens.get(4).substring(tokens.get(4).indexOf("10"), tokens.get(4).length());
                 //TODO записать в элемент инвентаризации
 
-//                for (int i = 0; i < tokens.size(); i++) {
-//                    System.out.println(i + "-" + tokens.get(i));
-//                }
-
             }
-// Printer
-
-
-            /*
-            найти переферийные устройства
-            считывать строку пока не найдет DMI
-            анализировать на наличие в строке слова принтер.
-             */
+// Printersssss
 
             if (curLine.contains("Принтер")) {
-                if (!curLine.contains("Fax") || !curLine.contains(" Microsoft") || !curLine.contains("USB") || !curLine.contains("XPS") || !curLine.contains("PDF")) {
-//                    // do nothing
-//                  //  System.out.println("!!!!" + curLine);
-//                //    curLine = sc.nextLine();
-//                } else {
-                    printList.add(curLine.substring(13));
-                }
-               // System.out.println("Found -" + curLine);
-               // tokens = new ArrayList<>((Arrays.asList(curLine.split(" "))));
+                if (curLine.contains("Fax")) {
+                    // do nothing
+                } else { // Если нет Fax
+                    if (curLine.contains("USB")) {
+                        // do nothing
+                    } else { // Если нет USB
+                        if (curLine.contains("Microsoft")) {
+                            // do nothing
+                        } else { // Если нет Microsoft XPS + PDF
+                            if (curLine.contains("PDF")) {
+                                //do nothing
+                            } else { // Если нет  PDF
+                                if (curLine.contains("OneNote")) {
+                                    // do nothing
+                                } else {  // Если нет OneNote
+                                    if (curLine.contains("Universal")) {
+                                        // do nothing
+                                    } else {  // Если нет HP Universal
+                                        printList.add(curLine.substring(13));
 
-                //   printList.add(tokens.get(2).substring(1,tokens.get(2).length()));
-                // printList.add(curLine.substring("Принтер".length()));
-                //
+                                    } //end if-universal
+                                } //end if-onenote
+                            } //end if-pdf
+                        } //end if-MS
+                    } //end if-usb
+                } //end if-fax
 
                 //TODO записать в элемент инвентаризации
-                   System.out.println(pcName+" -"+printList.toString());
-//                while (!curLine.contains("DMI")) {
-//                    curLine = sc.nextLine();
-//                }
-//
-//                for (int i = 0; i < tokens.size(); i++) {
-//                    System.out.println(i + "-" + tokens.get(i));
-//                }
+                //    System.out.println(pcName+" -"+printList.toString());
 
             }
 
@@ -208,7 +202,7 @@ class LoadFromFile {
 
 
         // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
-//          System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize);
+          System.out.println(pcName + " " + osName +" "+ osSP+" "+ramSize+" "+printList.toString());
 
         sc.close();
 
