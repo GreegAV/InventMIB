@@ -16,7 +16,7 @@ class LoadFromFile {
     // и добавлять в коллекцию
     //
     private static JFileChooser fc;
-    private static int numlines = 0;
+    private static int numItems = 0;
     private static int countXP = 0, count7 = 0, count10 = 0;
 
     // Получаем имя папки с файлами отчетов.
@@ -96,6 +96,7 @@ class LoadFromFile {
         List<String> tokens;
 
         InventItem anItem = new InventItem();
+
 
 
         while (!theEnd && (sc.hasNextLine() && (curLine != null))) {
@@ -232,18 +233,19 @@ class LoadFromFile {
         // TODO Форматированный вывод куда-то. Передавать, например в ReportGenerator.
         anItem.setLicList(licList);
 
-        String listLicences = "";
-
-        Set<Map.Entry<String, String>> set = licList.entrySet();
-        for (Map.Entry<String, String> ll : set) {
-            System.out.print(ll.getKey() + ": ");
-            System.out.println(ll.getValue());
-        }
-
-        System.out.println(pcName + " " + osName + " " + osSP + " " + ramSize + "\n " + printList.toString() + "\n " + listLicences);
-        System.out.println(listLicences);
+//        String listLicences = "";
+//
+//        Set<Map.Entry<String, String>> set = licList.entrySet();
+//        for (Map.Entry<String, String> ll : set) {
+//            System.out.print(ll.getKey() + ": ");
+//            System.out.println(ll.getValue());
+//        }
+//
+//        System.out.println(pcName + " " + osName + " " + osSP + " " + ramSize + "\n " + printList.toString() + "\n " + listLicences);
+//        System.out.println(listLicences);
 
         sc.close();
+        numItems++;
         doReport(anItem);
 
     }

@@ -13,7 +13,7 @@ public class InventItem {
  //   private String cpuName;
  // не придумал зачем
     private String ramSize;
-    private String hddName;
+ //   private String hddName;
     private String lanIP;
     private List<String> printList;
     private Map<String, String> licList;
@@ -40,9 +40,9 @@ public class InventItem {
         return ramSize;
     }
 
-    public String getHddName() {
-        return hddName;
-    }
+//    public String getHddName() {
+//        return hddName;
+//    }
 
     public String getLanIP() {
         return lanIP;
@@ -76,9 +76,9 @@ public class InventItem {
         this.ramSize = ramSize;
     }
 
-    public void setHddName(String hddName) {
-        this.hddName = hddName;
-    }
+//    public void setHddName(String hddName) {
+//        this.hddName = hddName;
+//    }
 
     public void setLanIP(String lanIP) {
         this.lanIP = lanIP;
