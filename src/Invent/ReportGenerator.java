@@ -31,18 +31,19 @@ public class ReportGenerator {
 
         Set<Map.Entry<String, String>> set = item.getLicList().entrySet();
         for (Map.Entry<String, String> ll : set) {
-            listSoft+=ll.getKey() + "\r";
-            listLicences+=ll.getValue()+"\r";
+            listSoft += ll.getKey() + "\r";
+            listLicences += ll.getValue() + "\r";
         }
 
         xlsReport.addCell(new Label(5, row, listSoft));
         xlsReport.addCell(new Label(6, row, listLicences));
 
-        String prnList="";
-        for (int i = 0; i <item.getPrintList().size() ; i++) {
-            prnList+=item.getPrintList().get(i)+"\n";
+        String prnList = "";
+        for (int i = 0; i < item.getPrintList().size(); i++) {
+            prnList += item.getPrintList().get(i) + "\n";
         }
         xlsReport.addCell(new Label(7, row, prnList));
+        System.out.println(item.getPcName()+" "+row);
     }
 
     static void closeReport() throws IOException, WriteException {
