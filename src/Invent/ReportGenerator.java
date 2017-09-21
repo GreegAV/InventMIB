@@ -5,6 +5,8 @@ import jxl.write.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 
 public class ReportGenerator {
     static boolean fileOpen = false;
@@ -24,8 +26,23 @@ public class ReportGenerator {
         xlsReport.addCell(new Label(3, row, item.getRamSize()));
         xlsReport.addCell(new Label(4, row, item.getLanIP()));
 
-        xlsReport.addCell(new Label(5, row, item.getPrintList().toString()));
-        xlsReport.addCell(new Label(6, row, item.getLicList().toString()));
+        String listLicences = "";
+        String listSoft = "";
+
+        Set<Map.Entry<String, String>> set = item.getLicList().entrySet();
+        for (Map.Entry<String, String> ll : set) {
+            listSoft+=ll.getKey() + "\r";
+            listLicences+=ll.getValue()+"\r";
+        }
+
+        xlsReport.addCell(new Label(5, row, listSoft));
+        xlsReport.addCell(new Label(6, row, listLicences));
+
+        String prnList="";
+        for (int i = 0; i <item.getPrintList().size() ; i++) {
+            prnList+=item.getPrintList().get(i)+"\n";
+        }
+        xlsReport.addCell(new Label(7, row, prnList));
     }
 
     static void closeReport() throws IOException, WriteException {
