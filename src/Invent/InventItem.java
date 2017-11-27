@@ -11,7 +11,6 @@ public class InventItem {
     private String osName;
     private String osSP;
     //   private String cpuName;
-    // не придумал зачем
     private String ramSize;
     //   private String hddName;
     private String lanIP;

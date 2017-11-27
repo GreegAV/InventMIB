@@ -21,7 +21,6 @@ public class GC {
     }
 
     private static void clearGarbage(String tmpFileName) throws FileNotFoundException, UnsupportedEncodingException {
-
         boolean found = false;
 
         File file = new File(tmpFileName);

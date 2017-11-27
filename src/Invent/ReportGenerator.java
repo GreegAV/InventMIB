@@ -59,6 +59,5 @@ public class ReportGenerator {
         xlsReport = xls.createSheet("HQ", 0);
         return xlsReport;
     }
-
 }
 

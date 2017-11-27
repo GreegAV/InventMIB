@@ -14,6 +14,5 @@ public class Invent {
         createReport();
         loadFromFile();
         closeReport();
-
     }
 }

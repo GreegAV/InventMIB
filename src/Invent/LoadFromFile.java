@@ -206,6 +206,7 @@ class LoadFromFile {
                 anItem.setPrintList(printList);
             }
 // LICENSES!!!
+
             if (curLine.contains("Ключ продукт")) {
                 curLine = sc.nextLine();
                 while (curLine.length() > 0) {
